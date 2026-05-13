@@ -3,6 +3,7 @@
  * Arquivo: main.c
  * Autor: Iano de Oliva Kuhlmann
  * Colaboradores: chat.deepseek.com
+ * Resumo de colaboração da IA em: https://chat.deepseek.com/share/jil3nf8yyu9wwz0h8l
  * Disciplina: APR2
  * Professora: Dra. Eloize Rossi Marques Seno
  */

@@ -1,6 +1,6 @@
 /*
  * Projeto: Sistema de Curadoria de Obras de Artes
- * Arquivo: estruturas.h
+ * Arquivo: main.c
  * Autor: Iano de Oliva Kuhlmann
  * Colaboradores: chat.deepseek.com
  * Disciplina: APR2

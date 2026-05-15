@@ -85,7 +85,7 @@ int main()
         {
         case 1:
 
-            if(!moduleArtistas())
+            if(!moduloArtistas())
             {
                 printf("Erro ao executar o módulo de artistas.\n");
                 // Aqui você deve adicionar código para liberar memória alocada dinamicamente, se houver.
@@ -93,7 +93,7 @@ int main()
             break;
 
         case 2:
-            if(!moduleObras())
+            if(!moduloObras())
             {
                 printf("Erro ao executar o módulo de obras.\n");
                 // Aqui você deve adicionar código para liberar memória alocada dinamicamente, se houver.
@@ -101,7 +101,7 @@ int main()
             break;
 
         case 3:
-            if(!moduleColaboracoes())
+            if(!moduloColaboracoes())
             {
                 printf("Erro ao executar o módulo de colaborações.\n");
                 // Aqui você deve adicionar código para liberar memória alocada dinamicamente, se houver.
@@ -109,7 +109,7 @@ int main()
             break;
 
         case 4:
-            if(!moduleRelatorios())
+            if(!moduloRelatorios())
             {
                 printf("Erro ao executar o módulo de relatórios.\n");
                 // Aqui você deve adicionar código para liberar memória alocada dinamicamente, se houver.

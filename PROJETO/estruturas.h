@@ -57,12 +57,15 @@ typedef struct
 	char estilo[TAM_TEXTO_PEQUENO];
 	Data nascimento;
 
-	redeSocial *redesSociais; // Array dinâmico de redes sociais, cada artista pode ter um número variável de redes sociais.
+	// Array dinâmico de redes sociais, cada artista pode ter um número variável de redes sociais.
+	redeSocial *redesSociais; 
 	int totalRedesSociais;
 	int capacidadeRedesSociais;
+
+	// Array dinâmico de telefones, cada artista pode ter um número variável de telefones.
 	Telefone *telefones;
-	int totalTelefones; // Quantidade de telefones cadastrados para o artista.
-	int capacidadeTelefones; // Capacidade atual do array de telefones.
+	int totalTelefones;
+	int capacidadeTelefones;
 
 } Artista;
 

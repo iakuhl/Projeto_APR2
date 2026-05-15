@@ -2,8 +2,8 @@
 
 **Projeto da disciplina APR2**  
 **Autoria:** Iano de Oliva Kuhlmann  
-**Colaboradores:** chat.deepseek.com
-**Professora:** Dra. Eloize Rossi Marques Seno
+**Colaboradores:** chat.deepseek.com  
+**Professora:** Dra. Eloize Rossi Marques Seno  
 
 ---
 

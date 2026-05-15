@@ -4,6 +4,10 @@
 #include "estruturas.h"
 #include "listas.h"
 
+void carregarDados(ListaArtistas *listaArtistas, ListaObras *listaObras, ListaColaboracoes *listaColaboracoes);
+void liberarDados(ListaArtistas *listaArtistas, ListaObras *listaObras, ListaColaboracoes *listaColaboracoes);
+
+
 bool carregarArtistas(ListaArtistas *lista);
 bool salvarArtistas(const ListaArtistas *lista);
 

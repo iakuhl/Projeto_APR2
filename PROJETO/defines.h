@@ -13,7 +13,7 @@
  *************************/
 
  // Todas as definições de constantes, como tamanhos de campos, estão neste arquivo para facilitar a manutenção e evitar "números mágicos" espalhados pelo código.
-#define TAM_CPF 12
+#define TAM_CPF 15
 #define TAM_TELEFONE 20
 #define TAM_TEXTO_PEQUENO 50
 #define TAM_TEXTO_GRANDE 200

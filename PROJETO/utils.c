@@ -38,19 +38,18 @@
 void limparBuffer() // Limpa o buffer de entrada para evitar problemas com entradas inválidas.
 {
     int c;
-    c = getchar();
-    while (c != '\n' && c != EOF)
-    {
+    do {
         c = getchar();
-    }
+    } while(c != '\n' && c != EOF);
 }
 
 bool verificarLimiteString(const char *texto) // Verifica se a string ultrapassa o limite permitido, considerando o caractere nulo.
 {
     /* 
-    * Tratamento de buffer, verifica se o tamanho da string informada é maior que o limite (tamanho -1).
-    * Se for maior, limpa o buffer e informa erro ao usuário e solicita nova entrada de dados.
-    * Garante entrada válida.
+    * Tratamento de buffer, verifica se a entrada coube completamente na string.
+	* Se '\n' não estiver presente, a entrada excedeu o limite.
+    * Se houve excesso, limpa o buffer, informa erro ao usuário e retorna falso.
+    * Se couber na string retorna true.
     */
     if (strchr(texto, '\n') == NULL)
     {
@@ -59,6 +58,19 @@ bool verificarLimiteString(const char *texto) // Verifica se a string ultrapassa
         return false;
     }
     return true;
+}
+
+bool dadosInformados(char *entrada, int tamanho)
+{
+	if (fgets(entrada, tamanho, stdin) == NULL)
+	{
+		if (feof(stdin))
+			printf("\nEntrada encerrada pelo usuário.\n");
+		else
+			printf("Erro de leitura.\n");
+		return false;
+	}
+	return true;
 }
 
 bool lerInteiro(int *numero) // Validação robusta para entrada de inteiros.
@@ -70,23 +82,17 @@ bool lerInteiro(int *numero) // Validação robusta para entrada de inteiros.
     while (true)
     {
         printf("Digite um número inteiro: ");
-        if (fgets(entrada, sizeof(entrada), stdin) == NULL)
-        {
-            if (feof(stdin))
-                printf("\nEntrada encerrada pelo usuário.\n");
-            else
-                printf("Erro de leitura.\n");
-            return false;
-        }
+
+		// Verifica a entrada de dados
+		if(!dadosInformados(entrada,sizeof(entrada)))
+			return false;
 
         // Verifica se a entrada ultrapassa o limite do buffer
         if(!verificarLimiteString(entrada))
             continue;
 
-        // Prepara errno para detectar overflow
-        errno = 0;
-        valor = strtol(entrada, &fim, 10);
-
+        errno = 0; // Prepara errno para detectar overflow
+        valor = strtol(entrada, &fim, 10); // Converte a string para long em base decimal
         // Verifica overflow do long
         if (errno == ERANGE && (valor == LONG_MAX || valor == LONG_MIN))
         {
@@ -94,19 +100,21 @@ bool lerInteiro(int *numero) // Validação robusta para entrada de inteiros.
             continue;
         }
 
+		// Confirma se ao menos um caractere numérico foi informado.
         if (fim == entrada)
         {
             printf("Entrada inválida! Informe um número inteiro: ");
             continue;
         }
 
+		// Verifica se o fim da conversão em strtol é um 'enter' ou terminador de string.
         if (*fim != '\n' && *fim != '\0')
         {
             printf("Entrada inválida! Informe um número inteiro: ");
             continue;
         }
 
-        // Verifica se cabe em int
+        // Verifica se cabe em int para retornar
         if (valor < INT_MIN || valor > INT_MAX)
         {
             printf("Número fora da faixa de inteiro! Informe um número inteiro: ");
@@ -122,21 +130,15 @@ bool lerString(char texto[], int tamanho) // Validação robusta para entrada de
 {
     while (true)
     {
-        if (fgets(texto, tamanho, stdin) == NULL)
-        {
-            if (feof(stdin))
-                printf("\nEntrada encerrada pelo usuário.\n");
-            else
-                printf("Erro de leitura.\n");
-            return false;
-        }
-		
+		// Verifica a entrada de dados.
+		if(!dadosInformados(texto,tamanho))
+			return false;
         // Verifica se a entrada ultrapassa o limite do buffer
         if(!verificarLimiteString(texto))
             continue;
 
         texto[strcspn(texto, "\n")] = '\0';
-
+		
         if (strlen(texto) == 0)
         {
             printf("Entrada inválida! Informe um texto: ");
@@ -146,6 +148,12 @@ bool lerString(char texto[], int tamanho) // Validação robusta para entrada de
         return true;
     }
 }
+
+bool lerCPF(char *cpf)
+{
+	
+}
+
 
 bool validarCPF(const char cpf[]) // Função para validar CPF, deverá ser aprimorada para tratar casos de CPFs com formatação (com pontos e hífen).
 {

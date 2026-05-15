@@ -81,7 +81,7 @@ int main()
     bool executando = true;
     do
 	{
-        switch (menuPrincipal();)
+        switch (menuPrincipal());
         {
         case 1:
 

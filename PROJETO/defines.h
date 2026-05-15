@@ -15,7 +15,6 @@
  // Todas as definições de constantes, como tamanhos de campos, estão neste arquivo para facilitar a manutenção e evitar "números mágicos" espalhados pelo código.
 #define TAM_CPF 12
 #define TAM_TELEFONE 20
-#define TAM_NACIONALIDADE 30
 #define TAM_TEXTO_PEQUENO 50
 #define TAM_TEXTO_GRANDE 200
 #define TAM_BUFFER_LEITURA 64 // Utilizada para leitura de inteiros, garantindo que o buffer seja grande o suficiente para evitar estouro e permitindo a validação adequada da entrada do usuário.

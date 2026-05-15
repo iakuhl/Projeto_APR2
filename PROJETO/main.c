@@ -18,11 +18,8 @@
  * BIBLIOTECAS *
  ***************/
 #include <stdlib.h>
-#include <limits.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include <string.h>
-#include <errno.h>
 
 
 /***************
@@ -36,111 +33,69 @@
 
 void carregarDados(ListaArtistas *listaArtistas, ListaObras *listaObras, ListaColaboracoes *listaColaboracoes)
 { 
-    if(!carregarArtistas(listaArtistas))
-        printf("Erro ao carregar artistas. Iniciando com lista vazia.\n");
-    if(!carregarObras(listaObras))
-        printf("Erro ao carregar obras. Iniciando com lista vazia.\n");
-    if(!carregarColaboracoes(listaColaboracoes))
-        printf("Erro ao carregar colaborações. Iniciando com lista vazia.\n");
+    carregarArtistas(listaArtistas);
+    //carregarObras(listaObras);
+    //carregarColaboracoes(listaColaboracoes);
 }
 
-bool liberarDados(ListaArtistas *listaArtistas, ListaObras *listaObras, ListaColaboracoes *listaColaboracoes)
+void liberarDados(ListaArtistas *listaArtistas, ListaObras *listaObras, ListaColaboracoes *listaColaboracoes)
 {
-	sucesso = true;
-	if(!liberarArtistas(listaArtistas))
-	{
-		printf("Erro de memória em Artistas!\n");
-		sucesso = false;
-	}
-	if(!liberarObras(listaObras))
-	{
-		printf("Erro de memória em Obras!\n");
-		sucesso = false;
-	}
-	if(!liberarColaboracoes(listaColaboracoes))
-	{
-		printf("Erro de memória em Colaborações!\n");
-		sucesso = false;
-	}
-	return sucesso;
+	liberarListaArtistas(listaArtistas);
+	//liberarListaObras(listaObras);
+	//liberarListaColaboracoes(listaColaboracoes);
 }
 
 
 int main()
 {
-    ListaArtistas *listaArtistas;
-    ListaObras *listaObras;
-    ListaColaboracoes *listaColaboracoes;
+    ListaArtistas listaArtistas;
+    ListaObras listaObras;
+    ListaColaboracoes listaColaboracoes;
 
-    listaArtistas = (ListaArtistas *) malloc(sizeof(ListaArtistas));
-    listaObras = (ListaObras *) malloc(sizeof(ListaObras));
-    listaColaboracoes = (ListaColaboracoes *) malloc(sizeof(ListaColaboracoes));
-
-    carregarDados(listaArtistas, listaObras, listaColaboracoes);
+    carregarDados(&listaArtistas, &listaObras, &listaColaboracoes);
 	
     bool executando = true;
     do
 	{
-        switch (menuPrincipal());
+        switch (menuPrincipal())
         {
         case 1:
 
-            if(!moduloArtistas())
-            {
-                printf("Erro ao executar o módulo de artistas.\n");
-                // Aqui você deve adicionar código para liberar memória alocada dinamicamente, se houver.
-            }
+            moduloArtistas(&listaArtistas);
+			salvarArtistas(&listaArtistas);
             break;
 
         case 2:
-            if(!moduloObras())
-            {
-                printf("Erro ao executar o módulo de obras.\n");
-                // Aqui você deve adicionar código para liberar memória alocada dinamicamente, se houver.
-            }
-            break;
+			//moduloObras(&listaObras);
+			//salvarObras(&listaObras);
+			break;
 
         case 3:
-            if(!moduloColaboracoes())
-            {
-                printf("Erro ao executar o módulo de colaborações.\n");
-                // Aqui você deve adicionar código para liberar memória alocada dinamicamente, se houver.
-            }
-            break;
+			//moduloColaboracoes(&listaColaboracoes, &listaArtistas, &listaObras);
+			//salvarColaboracoes(&listaColaboracoes);
+			break;
 
         case 4:
-            if(!moduloRelatorios())
-            {
-                printf("Erro ao executar o módulo de relatórios.\n");
-                // Aqui você deve adicionar código para liberar memória alocada dinamicamente, se houver.
-            }
-            break;
+			//moduloRelatorios(&listaArtistas, &listaObras, &listaColaboracoes);
+			break;
 
         case 5:
-            printf("Encerrando programa...");
-            // Aqui você deve adicionar código para liberar memória alocada dinamicamente, se houver.
-			if(!liberarDados(listaArtistas, listaObras, listaColaboracoes))
-			{
-				printf("Memória não foi liberada corretamente! Encerrando o programa...");
-			}
+			printf("Encerrando programa...");
+			salvarArtistas(&listaArtistas);
+			salvarObras(&listaObras);
+			salvarColaboracoes(&listaColaboracoes);
             executando = false;
             break;
 
         case -1:
-            // Erro detectado, encerrar programa imediatamente após limpar memória, se necessário.
-            // Aqui você deve adicionar código para liberar memória alocada dinamicamente, se houver.
-
-			printf("Falha na operação, os dados não foram salvos. Encerrando o programa.");
-			
-			if(!liberarDados(listaArtistas, listaObras, listaColaboracoes))
-			{
-				printf("Memória não foi liberada corretamente! Encerrando o programa...");
-			}
+			printf("Erro Irrecuperável, encerrando sem salvar.\n");
 			executando = false;
-            return 1;
+            break;
         }
 		
     } while (executando);
-
+	
+	// Libera memória das listas.
+	liberarDados(&listaArtistas, &listaObras, &listaColaboracoes);
     return 0;
 }

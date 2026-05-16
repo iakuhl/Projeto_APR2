@@ -189,3 +189,23 @@ bool validarCPF(const char cpf[]) // Função para validar CPF, deverá ser apri
 
     return true;
 }
+
+int escolherOpcao(int min, int max)
+{
+    int opcao;
+    while (true)
+    {
+        printf("Escolha uma opção (%d-%d): ", min, max);
+        if (!lerInteiro(&opcao))
+        {
+            // Se falhou (EOF ou erro), retornar ao menu principal e limpar memória.
+            printf(MSG_LOOP_INFINITO);
+            return -1; // Retorna -1 para indicar erro
+        }
+
+        if (opcao >= min && opcao <= max)
+            return opcao;
+        else
+            printf(MSG_ENTRADA_INVALIDA);
+    }
+}

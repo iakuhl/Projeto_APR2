@@ -98,28 +98,28 @@ bool lerInteiro(int *numero) // Validação robusta para entrada de inteiros.
         // Verifica overflow do long
         if (errno == ERANGE && (valor == LONG_MAX || valor == LONG_MIN))
         {
-            printf("Número muito grande! Informe um número inteiro: ");
+            printf(MSG_INTEIRO_GRANDE);
             continue;
         }
 
 		// Confirma se ao menos um caractere numérico foi informado.
         if (fim == entrada)
         {
-            printf("Entrada inválida! Informe um número inteiro: ");
+            printf(MSG_ENTRADA_INVALIDA);
             continue;
         }
 
 		// Verifica se o fim da conversão em strtol é um 'enter' ou terminador de string.
         if (*fim != '\n' && *fim != '\0')
         {
-            printf("Entrada inválida! Informe um número inteiro: ");
+            printf(MSG_ENTRADA_INVALIDA);
             continue;
         }
 
         // Verifica se cabe em int para retornar
         if (valor < INT_MIN || valor > INT_MAX)
         {
-            printf("Número fora da faixa de inteiro! Informe um número inteiro: ");
+            printf(MSG_INTEIRO_GRANDE);
             continue;
         }
 
@@ -143,7 +143,7 @@ bool lerString(char texto[], int tamanho) // Validação robusta para entrada de
 		
         if (strlen(texto) == 0)
         {
-            printf("Entrada inválida! Informe um texto: ");
+            printf(MSG_ENTRADA_INVALIDA);
             continue;
         }
 

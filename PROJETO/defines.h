@@ -22,6 +22,8 @@
 // Mensagens de erro
 #define MSG_LOOP_INFINITO "Detectamos um ERRO IRRECUPERÁVEL!\n" // Utilizada nos menus para informar o usuário sobre a ocorrência de um erro de leitura (EOF ou erro de entrada).
 #define MSG_ENTRADA_INVALIDA "Entrada inválida! Tente novamente.\n" // Utilizada nos menus para informar o usuário sobre a entrada de dados inválida (fora do intervalo permitido ou tipo de dado incorreto).
+#define MSG_INTEIRO_GRANDE "Número muito grande! Informe um número inteiro: " // Utilizada em utils.c para informar entrada inválida.
+
 
 // Nomes dos arquivos de persistência
 #define NOME_ARQUIVO_ARTISTAS "artistas.bin"

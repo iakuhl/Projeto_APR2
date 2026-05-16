@@ -25,6 +25,17 @@ static void buscarArtista(const ListaArtistas *lista);
 // static void editarArtista(ListaArtistas *lista);  // se desejar implementar depois
 // static void excluirArtista(ListaArtistas *lista);
 
+static int menuArtistas()
+{
+    printf("### MENU ARTISTAS ###\n");
+    printf("1 - Cadastrar Artista\n");
+    printf("2 - Listar Artistas\n");
+    printf("3 - Buscar Artista por CPF\n");
+    printf("4 - Voltar ao Menu Principal\n");
+
+    return escolherOpcao(1, 4);
+}
+
 void moduloArtistas(ListaArtistas *lista)
 {
     bool executando = true;
